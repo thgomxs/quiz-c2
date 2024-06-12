@@ -1,5 +1,10 @@
 
 let perguntaIndex = 0
+let respostaDetalhes = {
+    ordem: null,
+    linear: null,
+    homogenea: null
+}
 let respostaAtual = null
 let perguntaAtual = null
 
@@ -108,54 +113,61 @@ function proximaPergunta(){
     console.log(respostaAtual, perguntaAtual)
     if (perguntaAtual.tipo === 'ordem'){
         if (respostaAtual === 'A'){
-            respostas.forEach((resposta, index)=>{
+            respostas.forEach((resposta)=>{
                 if (resposta.ordem === 2){
                     apagar.push(resposta.nome)
                 }
             })
+            respostaDetalhes.ordem = 1
         }
         if (respostaAtual === 'B'){
-            respostas.forEach((resposta, index)=>{
+            respostas.forEach((resposta)=>{
                 if (resposta.ordem === 1){
                     apagar.push(resposta.nome)
                 }
             })
-            perguntas.splice(1, 1)
+            respostaDetalhes.ordem = 2
         }
     }
 
     if (perguntaAtual.tipo === 'linear'){
-        if (respostaAtual === 'A'){
-            respostas.forEach((resposta, index)=>{
-                if (resposta.linear === false){
-                    apagar.push(resposta.nome)
+        if (respostaDetalhes.ordem !== 2){
+            if (respostaAtual === 'A'){
+                respostas.forEach((resposta)=>{
+                    if (resposta.linear === false){
+                        apagar.push(resposta.nome)
 
-                }
-            })
-        }
-        if (respostaAtual === 'B'){
-            respostas.forEach((resposta, index)=>{
-                if (resposta.linear === true){
-                    apagar.push(resposta.nome)
-                }
-            })
+                    }
+                })
+                respostaDetalhes.linear = true
+            }
+            if (respostaAtual === 'B'){
+                respostas.forEach((resposta)=>{
+                    if (resposta.linear === true){
+                        apagar.push(resposta.nome)
+                    }
+                })
+                respostaDetalhes.linear = false
+            }
         }
     }
 
     if (perguntaAtual.tipo === 'homogenea'){
         if (respostaAtual === 'A'){
-            respostas.forEach((resposta, index)=>{
+            respostas.forEach((resposta)=>{
                 if (resposta.homogenea === false){
                     apagar.push(resposta.nome)
                 }
             })
+            respostaDetalhes.homogenea = true
         }
         if (respostaAtual === 'B'){
-            respostas.forEach((resposta, index)=>{
+            respostas.forEach((resposta)=>{
                 if (resposta.homogenea === true){
                     apagar.push(resposta.nome)
                 }
             })
+            respostaDetalhes.homogenea = false
         }
     }
     apagar.forEach((nome)=>{
@@ -174,7 +186,7 @@ function proximaPergunta(){
 }
 
 
-inicarButton.addEventListener('click', (event) => {
+inicarButton.addEventListener('click', () => {
     quizNome.style.display = 'none';
     inicarButton.style.display = 'none';
     desenvolvedoresButton.style.display = 'none';
@@ -182,7 +194,7 @@ inicarButton.addEventListener('click', (event) => {
 })
 
 escolhas.forEach((escolha)=>{
-    escolha.addEventListener('click', (event)=>{
+    escolha.addEventListener('click', ()=>{
         limparRespostas()
         escolha.classList.add('selected');
         respostaAtual = escolha.getAttribute('data-option');
@@ -190,6 +202,6 @@ escolhas.forEach((escolha)=>{
     })
 })
 
-proximaButton.addEventListener('click', (event) => {
+proximaButton.addEventListener('click', () => {
     proximaPergunta()
 })
