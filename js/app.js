@@ -62,6 +62,12 @@ let respostas = [
         homogenea: true
     },
     {
+        nome: 'EDO NÃO LINEAR NÃO HOMOGENEA DE PRIMEIRA ORDEM',
+        linear: false,
+        ordem: 1,
+        homogenea: false
+    },
+    {
         nome: 'EDO LINEAR HOMOGENEA DE SEGUNDA ORDEM',
         linear: true,
         ordem: 2,
@@ -161,6 +167,7 @@ function proximaPergunta(){
             })
             respostaDetalhes.homogenea = true
         }
+
         if (respostaAtual === 'B'){
             respostas.forEach((resposta)=>{
                 if (resposta.homogenea === true){
