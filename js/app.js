@@ -92,10 +92,42 @@ let respostas = [
         homogenea: false,
         coeficientes: null,
         tipos: [
-            {nome: 'SEPARÁVEL', texto: 'Você é uma pessoa que abraça as mudanças que o caminho lhe oferece e se adapta bem à elas, ao mesmo tempo tem bem definidas e separadas as partes de sua vida. A solução para todos os seus problemas será:', solucao: ''},
-            {nome: 'HOMOGÊNEA', texto: 'Você é uma pessoa que abraça as mudanças que a vida lhe oferece e se adapta bem à elas, mas, ao mesmo tempo, é uma pessoa fiel a seus princípios e que gosta da zona de conforto. A solução para todos os seus problemas será:', solucao: ''},
-            {nome: 'EXATA', texto: 'Você é uma pessoa que abraça as mudanças que a vida lhe oferece e se adapta bem a elas, mas, ao mesmo tempo, se mantém firme a seus ideais e permanece racional e imparcial quando necessário. A solução para todos os seus problemas será:', solucao: ''},
-            {nome: 'NÃO EXATA', texto: 'Você é uma pessoa que abraça as mudanças que a vida lhe oferece e se adapta bem à elas, mas, ao mesmo tempo, não tem medo de assumir um lado e ser parcial quando a situação necessita. A solução para todos os seus problemas será:', solucao: ''}
+            {nome: 'SEPARÁVEL', texto: 'Você é uma pessoa que abraça as mudanças que o caminho lhe oferece e se adapta bem à elas, ao mesmo tempo tem bem definidas e separadas as partes de sua vida. A solução para todos os seus problemas será:', solucao: `
+             Para resolver uma EDO não linear separável de primeira ordem da forma: <br>
+        $$ \\frac{dy}{dx} = g(x)h(y) $$ <br>
+        Podemos separar as variáveis: <br>
+        $$ \\frac{1}{h(y)} \\, dy = g(x) \\, dx $$ <br>
+        Integrando ambos os lados, obtemos: <br>
+        $$ \\int \\frac{1}{h(y)} \\, dy = \\int g(x) \\, dx + C $$ <br>
+        Onde \\( C \\) é a constante de integração. Esta equação implícita pode ser usada para encontrar \\( y \\) em termos de \\( x \\), determinando assim a solução geral da EDO.`},
+            {nome: 'HOMOGÊNEA', texto: 'Você é uma pessoa que abraça as mudanças que a vida lhe oferece e se adapta bem à elas, mas, ao mesmo tempo, é uma pessoa fiel a seus princípios e que gosta da zona de conforto. A solução para todos os seus problemas será:', solucao: `        Para uma EDO não linear homogênea de primeira ordem da forma: <br>
+        $$\\frac{dy}{dx} = \\frac{f(y/x)}{g(y/x)}$$ <br>
+        Fazendo a substituição \\( v = \\frac{y}{x} \\) (ou seja, \\( y = vx \\)), obtemos: <br>
+        $$\\frac{dy}{dx} = v + x\\frac{dv}{dx}$$ <br>
+        Portanto, a EDO se torna: <br>
+        $$v + x\\frac{dv}{dx} = \\frac{f(v)}{g(v)}$$ <br>
+        Que pode ser resolvida como uma EDO separável: <br>
+        $$\\int g(v) \\, dv = \\int \\frac{dx}{x}$$`},
+            {nome: 'EXATA', texto: 'Você é uma pessoa que abraça as mudanças que a vida lhe oferece e se adapta bem a elas, mas, ao mesmo tempo, se mantém firme a seus ideais e permanece racional e imparcial quando necessário. A solução para todos os seus problemas será:', solucao: `
+                    <p>Para resolver uma EDO não linear exata de primeira ordem da forma:</p>
+        $$ M(x, y) \\, dx + N(x, y) \\, dy = 0 $$
+        <p>Verificamos a condição de exatidão:</p>
+        $$ \\frac{\\partial M}{\\partial y} = \\frac{\\partial N}{\\partial x} $$
+        <p>Se a condição for satisfeita, encontramos um fator integrante \\( \\mu(x, y) \\) tal que:</p>
+        $$ \\mu(x, y) M(x, y) \\, dx + \\mu(x, y) N(x, y) \\, dy = 0 $$
+        <p>onde \\( \\mu(x, y) \\) é encontrado pela relação:</p>
+        $$ \\mu(x, y) = e^{\\int \\frac{M_y - N_x}{N} \\, dx} $$
+        <p>Depois de multiplicar a EDO original pelo fator integrante \\( \\mu(x, y) \\), obtemos uma equação exata que pode ser integrada diretamente para encontrar a solução.</p>`},
+            {nome: 'NÃO EXATA', texto: 'Você é uma pessoa que abraça as mudanças que a vida lhe oferece e se adapta bem à elas, mas, ao mesmo tempo, não tem medo de assumir um lado e ser parcial quando a situação necessita. A solução para todos os seus problemas será:', solucao: `
+             <p>Para resolver uma EDO não linear não exata de primeira ordem da forma:</p>
+        $$ M(x, y) \\, dx + N(x, y) \\, dy = 0 $$
+        <p>Primeiro, verificamos a condição de exatidão:</p>
+        $$ \\frac{\\partial M}{\\partial y} \\neq \\frac{\\partial N}{\\partial x} $$
+        <p>Como a condição de exatidão não é satisfeita, precisamos encontrar um fator integrante adequado.</p>
+        <p>Um método comum é usar um fator integrante \\( \\mu(x) \\) que depende apenas da variável \\( x \\), tal que ao multiplicar a EDO original, obtemos uma equação exata:</p>
+        $$ \\mu(x) M(x, y) \\, dx + \\mu(x) N(x, y) \\, dy = 0 $$
+        <p>O fator integrante \\( \\mu(x) \\) pode ser encontrado usando uma forma conveniente, como \\( \\mu(x) = e^{\\int P(x) \\, dx} \\), onde \\( P(x) \\) é escolhido de forma a tornar a equação \\( \\mu(x) M(x, y) \\, dx + \\mu(x) N(x, y) \\, dy = 0 \\) exata.</p>
+        <p>Depois de encontrar o fator integrante adequado, a equação se torna exata e pode ser integrada diretamente para encontrar a solução \\( y(x) \\).</p>`}
         ]
     },
     {
@@ -106,9 +138,9 @@ let respostas = [
         homogenea: true,
         coeficientes: null,
         tipos: [
-            {nome: '\\Delta > 0', texto: 'Você é uma pessoa um tanto complexa, mas que é muito fiel a seus ideais e objetivos e leal às pessoas a sua volta. Você tende a ser bem real e positivo/otimista sobre a vida e gosta de achar soluções concretas para seus problemas. A solução para todos os seus problemas é:', solucao: ' '},
-            {nome: '\\Delta = 0', texto: 'Você é uma pessoa um tanto complexa, mas que é muito fiel a seus ideais e objetivos e leal às pessoas a sua volta. Você tende a ser bem realista e neutro sobre a vida e gosta de achar uma única solução concreta para seus problemas. A solução para todos os seus problemas é:', solucao: ' '},
-            {nome: '\\Delta < 0', texto: 'Você é uma pessoa um tanto complexa, mas que é muito fiel a seus ideais e objetivos e leal às pessoas a sua volta. Você tende a andar com a cabeça nas nuvens e ser bem criativo, e gosta de achar soluções imaginativas para o dia a dia. A solução para todos os seus problemas é:', solucao: ' '}
+            {nome: '\\Delta > 0', texto: 'Você é uma pessoa um tanto complexa, mas que é muito fiel a seus ideais e objetivos e leal às pessoas a sua volta. Você tende a ser bem real e positivo/otimista sobre a vida e gosta de achar soluções concretas para seus problemas. A solução para todos os seus problemas é:', solucao: '$$y(x) = C_1e^{r_1x} + C_2e^{r_2x}$$'},
+            {nome: '\\Delta = 0', texto: 'Você é uma pessoa um tanto complexa, mas que é muito fiel a seus ideais e objetivos e leal às pessoas a sua volta. Você tende a ser bem realista e neutro sobre a vida e gosta de achar uma única solução concreta para seus problemas. A solução para todos os seus problemas é:', solucao: '$$y(x) = (C_1 + C_2x)e^{r_1x}$$'},
+            {nome: '\\Delta < 0', texto: 'Você é uma pessoa um tanto complexa, mas que é muito fiel a seus ideais e objetivos e leal às pessoas a sua volta. Você tende a andar com a cabeça nas nuvens e ser bem criativo, e gosta de achar soluções imaginativas para o dia a dia. A solução para todos os seus problemas é:', solucao: '$$y(x) = e^{\\alpha x}(C_1\\cos(\\beta x) + C_2\\sin(\\beta x))$$'}
         ]
     },
     {
@@ -118,7 +150,7 @@ let respostas = [
         ordem: 2,
         homogenea: false,
         coeficientes: null,
-        tipos: [{nome: ' ', texto: 'Você é uma pessoa um tanto complexa, que no final das contas é uma junção de seus dois lados opostos. Um lado que adora se manter constante e fiel a seus ideais e bases, e outro que também adora uma mudança de ares e de situações. A solução para todos os seus problemas é:', solucao: ' '}]
+        tipos: [{nome: ' ', texto: 'Você é uma pessoa um tanto complexa, que no final das contas é uma junção de seus dois lados opostos. Um lado que adora se manter constante e fiel a seus ideais e bases, e outro que também adora uma mudança de ares e de situações. A solução para todos os seus problemas é:', solucao: '$$y(x) = y_h(x) + y_p(x)$$'}]
     }
 ]
 

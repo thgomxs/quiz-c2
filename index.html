@@ -26,36 +26,13 @@
 <body>
 
   <main class="container my-0">
-    <div class="container col-8 " style="height: 100vh" id="container-principal">
+    <div class="container col-8 my-5"  id="container-principal">
       <div class="container d-flex flex-column w-100 h-100 justify-content-center align-items-center ">
         <h1 id="quiz-nome" class="text-uppercase text-center fw-bold text-white mb-3">DESCUBRA A SUA EDO</h1>
 
         <div id="quiz-resultado" style="display: none"  class="flex-column justify-content-center align-items-center quiz-resultado-solucao text-uppercase fw-bold" >
           <p class="text-white fw-bold text-center">Parabéns! Você recebeu: <span class="text-primary" id="edo-nome"></span></p>
-          <div class="text-white text-center my-3"><span id="edo-texto" class="text-uppercase fw-bold"></span><span id="edo-solucao" class="text-lowercase"></span></div>
-        </div>
-
-        <div class="flex-column justify-content-center align-items-center quiz-resultado-solucao text-uppercase fw-bold" style="display: none"  data-edo="EDO LINEAR NÃO HOMOGENEA DE PRIMEIRA ORDEM">
-              <h1 class="text-white fw-bold text-center">VOCÊ É UMA <span class="text-primary" id="edo-nao-homogenea">EDO LINEAR NÃO HOMOGENEA DE PRIMEIRA ORDEM</span></h1>
-              <div class="text-lowercase text-white text-center my-3"><span class="text-uppercase descricao fw-bold">TEM VARIAVEIS</span> $$y(x) = e^{-\int p(x) \, dx} \left( \int q(x) e^{\int p(x) \, dx} \, dx + C \right)$$</div>
-        </div>
-
-        <div class="flex-column justify-content-center align-items-center quiz-resultado-solucao text-uppercase fw-bold" style="display: none"  data-edo="EDO LINEAR HOMOGENEA DE PRIMEIRA ORDEM">
-              <h1 class="text-white fw-bold text-center">VOCÊ É UMA <span class="text-primary">EDO LINEAR HOMOGENEA DE PRIMEIRA ORDEM</span></h1>
-              <div class="text-lowercase text-white text-center my-3"><span class="text-uppercase descricao fw-bold">Você é uma pessoa simples, direta e fiel a seus princípios, muitas vezes tendo sua importância subestimada pelos outros. A solução para todos os seus problemas será:</span> $$y(x) = Ce^{-\int p(x) \, dx}$$</div>
-        </div>
-
-        <div class="flex-column justify-content-center align-items-center quiz-resultado-solucao text-uppercase fw-bold" style="display: none"  data-edo="EDO NÃO LINEAR DE PRIMEIRA ORDEM">
-              <h1 class="text-white fw-bold text-center">VOCÊ É UMA <span class="text-primary" id="edo-nao-linear">EDO NÃO LINEAR DE PRIMEIRA ORDEM</span></h1>
-        </div>
-
-        <div class="flex-column justify-content-center align-items-center quiz-resultado-solucao text-uppercase fw-bold" style="display: none"  data-edo="EDO LINEAR HOMOGENEA DE SEGUNDA ORDEM">
-              <h1 class="text-white fw-bold text-center">VOCÊ É UMA <span class="text-primary" id="edo-raizes">EDO LINEAR HOMOGENEA DE SEGUNDA ORDEM</span></h1>
-        </div>
-
-        <div class="flex-column justify-content-center align-items-center quiz-resultado-solucao text-uppercase fw-bold" style="display: none"  data-edo="EDO LINEAR NÃO HOMOGENEA DE SEGUNDA ORDEM">
-              <h1 class="text-white fw-bold text-center">VOCÊ É UMA <span class="text-primary">EDO LINEAR NÃO HOMOGENEA DE SEGUNDA ORDEM COM COEFICIENTES CONSTANTES</span></h1>
-              <div class="text-lowercase text-white text-center my-3"><span class="text-uppercase descricao fw-bold">Você é uma pessoa um tanto complexa, que no final das contas é uma junção de seus dois lados opostos. Um lado que adora se manter constante e fiel a seus ideais e bases, e outro que também adora uma mudança de ares e de situações. A solução para todos os seus problemas é:</span> $$y(x) = Ce^{-\int p(x) \, dx}$$</div>
+          <div class="text-white text-center my-3"><span id="edo-texto" class="text-uppercase fw-bold"></span><span id="edo-solucao" class="d-inline-block text-lowercase border border-white rounded shadow p-3 my-3"></span></div>
         </div>
 
         <a id="quiz-replay-btn" style="display: none" href="/" class="btn btn-primary fw-bold text-uppercase">JOGAR NOVAMENTE</a>
