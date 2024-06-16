@@ -269,6 +269,9 @@ body{
   transition: .5s;
   background-color: #17D600;
 }
+.selected:hover{
+  background-color: #20c410;
+}
 
 @media only screen and (max-width: 1000px) {
     #container-principal {
@@ -276,10 +279,3 @@ body{
     }
 }
 
-body, html {
-        height: 100%; /* Garante que o body e html ocupem toda a altura da janela */
-        margin: 0;
-        display: flex;
-        justify-content: center; /* Centraliza no eixo horizontal */
-        align-items: center; /* Centraliza no eixo vertical */
-    }
