@@ -11,16 +11,17 @@ let respostaDetalhes = {
 let respostaAtual = null
 let perguntaAtual = null
 
-const quizResultadoSolucoes = document.querySelectorAll(".quiz-resultado-solucao")
+const quizResultado = document.querySelector('#quiz-resultado')
 const quizNome = document.querySelector("#quiz-nome")
-const quizReplayButton = document.querySelector("#quiz-replay-btn")
 
+const quizReplayButton = document.querySelector("#quiz-replay-btn")
 const inicarButton = document.querySelector('#iniciar-btn');
 const desenvolvedoresButton = document.querySelector('#desenvolvedores-btn');
 const proximaButton = document.querySelector('#proxima-btn');
 
 const perguntaContainer = document.querySelector('#pergunta-container');
 const perguntaTitulo = document.querySelector('#pergunta-titulo');
+
 const escolhas = document.querySelectorAll('.escolha');
 const escolhaA = document.querySelector('#escolha-a');
 const escolhaB = document.querySelector('#escolha-b');
@@ -69,6 +70,10 @@ let respostas = [
         linear: true,
         ordem: 1,
         homogenea: false,
+        tipos: [
+            {nome: 'COEFICIENTES CONSTANTES', texto: 'Você é uma pessoa direta e fiel a seus princípios, mas também pronta para se adaptar a diferentes circunstâncias que a vida oferece. A solução para todos os seus problemas será:', solucao: '$$y(x) = e^{-\\int p(x) \\, dx} \\left( \\int q(x) e^{\\int p(x) \\, dx} \\, dx + C \\right)$$'},
+            {nome: 'COEFICIENTES VARIÁVEIS', texto: 'Você é uma pessoa pronta para se adaptar a qualquer situação, que abraça as mudanças que lhe aparecem e que não gosta de ficar num mesmo lugar por muito tempo. A solução para todos os seus problemas será:', solucao: '$$y(x) = e^{-\\int p(x) \\, dx} \\left( \\int q(x) e^{\\int p(x) \\, dx} \\, dx + C \\right)$$'}
+        ]
     },
     {
         nome: 'EDO LINEAR HOMOGENEA DE PRIMEIRA ORDEM',
@@ -77,6 +82,7 @@ let respostas = [
         ordem: 1,
         homogenea: true,
         coeficientes: null,
+        tipos: [{nome: ' ', texto: 'Você é uma pessoa simples, direta e fiel a seus princípios, muitas vezes tendo sua importância subestimada pelos outros. A solução para todos os seus problemas será: ', solucao: '$$y(x) = Ce^{-\\int p(x) \\, dx}$$'}]
     },
     {
         nome: 'EDO NÃO LINEAR DE PRIMEIRA ORDEM',
@@ -85,28 +91,45 @@ let respostas = [
         ordem: 1,
         homogenea: false,
         coeficientes: null,
+        tipos: [
+            {nome: 'SEPARÁVEL', texto: 'Você é uma pessoa que abraça as mudanças que o caminho lhe oferece e se adapta bem à elas, ao mesmo tempo tem bem definidas e separadas as partes de sua vida. A solução para todos os seus problemas será:', solucao: ''},
+            {nome: 'HOMOGÊNEA', texto: 'Você é uma pessoa que abraça as mudanças que a vida lhe oferece e se adapta bem à elas, mas, ao mesmo tempo, é uma pessoa fiel a seus princípios e que gosta da zona de conforto. A solução para todos os seus problemas será:', solucao: ''},
+            {nome: 'EXATA', texto: 'Você é uma pessoa que abraça as mudanças que a vida lhe oferece e se adapta bem a elas, mas, ao mesmo tempo, se mantém firme a seus ideais e permanece racional e imparcial quando necessário. A solução para todos os seus problemas será:', solucao: ''},
+            {nome: 'NÃO EXATA', texto: 'Você é uma pessoa que abraça as mudanças que a vida lhe oferece e se adapta bem à elas, mas, ao mesmo tempo, não tem medo de assumir um lado e ser parcial quando a situação necessita. A solução para todos os seus problemas será:', solucao: ''}
+        ]
     },
     {
-        nome: 'EDO LINEAR HOMOGENEA DE SEGUNDA ORDEM',
+        nome: 'EDO LINEAR HOMOGENEA DE SEGUNDA ORDEM COM COEFICIENTES CONSTANTES',
         contador: 0,
         linear: true,
         ordem: 2,
         homogenea: true,
         coeficientes: null,
+        tipos: [
+            {nome: '\\Delta > 0', texto: 'Você é uma pessoa um tanto complexa, mas que é muito fiel a seus ideais e objetivos e leal às pessoas a sua volta. Você tende a ser bem real e positivo/otimista sobre a vida e gosta de achar soluções concretas para seus problemas. A solução para todos os seus problemas é:', solucao: ' '},
+            {nome: '\\Delta = 0', texto: 'Você é uma pessoa um tanto complexa, mas que é muito fiel a seus ideais e objetivos e leal às pessoas a sua volta. Você tende a ser bem realista e neutro sobre a vida e gosta de achar uma única solução concreta para seus problemas. A solução para todos os seus problemas é:', solucao: ' '},
+            {nome: '\\Delta < 0', texto: 'Você é uma pessoa um tanto complexa, mas que é muito fiel a seus ideais e objetivos e leal às pessoas a sua volta. Você tende a andar com a cabeça nas nuvens e ser bem criativo, e gosta de achar soluções imaginativas para o dia a dia. A solução para todos os seus problemas é:', solucao: ' '}
+        ]
     },
     {
-        nome: 'EDO LINEAR NÃO HOMOGENEA DE SEGUNDA ORDEM',
+        nome: 'EDO LINEAR NÃO HOMOGENEA DE SEGUNDA ORDEM COM COEFICIENTES CONSTANTES',
         contador: 0,
         linear: true,
         ordem: 2,
         homogenea: false,
         coeficientes: null,
+        tipos: [{nome: ' ', texto: 'Você é uma pessoa um tanto complexa, que no final das contas é uma junção de seus dois lados opostos. Um lado que adora se manter constante e fiel a seus ideais e bases, e outro que também adora uma mudança de ares e de situações. A solução para todos os seus problemas é:', solucao: ' '}]
     }
 ]
 
 
 
 function mostrarResultado(){
+    quizResultado.style.display = 'block'
+    const nomeEDO = quizResultado.querySelector('#edo-nome')
+    const textoEDO = quizResultado.querySelector('#edo-texto')
+    const solucaoEDO = quizResultado.querySelector('#edo-solucao')
+
     let resultado = null
     let maiorContador = 0
     respostas.forEach((resposta)=>{
@@ -116,33 +139,33 @@ function mostrarResultado(){
         }
     })
 
-    if (respostaDetalhes.ordem === 1 && respostaDetalhes.homogenea === false){
-        if (respostaDetalhes.coeficientes === true){
-            document.querySelector("#edo-nao-homogenea").innerHTML += " COM COEFICIENTES CONSTANTES"
+    nomeEDO.innerHTML = resultado.nome
+    textoEDO.innerHTML = resultado.tipos[0].texto
+    solucaoEDO.innerHTML = resultado.tipos[0].solucao
+
+    if (respostaDetalhes.raizes){
+        if (respostaDetalhes.raizes === '\\Delta > 0'){
+            nomeEDO.parentElement.innerHTML += `, cuja equação característica possui duas raízes reais distintas $$${respostaDetalhes.raizes}$$`
         }
-        if (respostaDetalhes.coeficientes === false){
-            document.querySelector("#edo-nao-homogenea").innerHTML += " COM COEFICIENTES VARIÁVEIS"
+        if (respostaDetalhes.raizes === '\\Delta = 0'){
+            nomeEDO.parentElement.innerHTML += `, cuja equação característica possui duas raízes reais idênticas $$${respostaDetalhes.raizes}$$`
+        }
+        if (respostaDetalhes.raizes === '\\Delta < 0'){
+            nomeEDO.parentElement.innerHTML += `, cuja equação característica possui duas raízes imaginárias distintas $$${respostaDetalhes.raizes}$$`
         }
     }
 
-    if (respostaDetalhes.ordem === 1 && respostaDetalhes.linear === false){
-        document.querySelector("#edo-nao-linear").innerHTML += ` ${respostaDetalhes.tipo}`
+    if (respostaDetalhes.tipo){
+        nomeEDO.parentElement.innerHTML += ` NA FORMA ${respostaDetalhes.tipo}`
     }
 
-    if (respostaDetalhes.ordem === 2 && respostaDetalhes.homogenea === true){
-        document.querySelector("#edo-raizes").innerHTML += ` COM COEFICIENTES CONSTANTES E ${respostaDetalhes.raizes}`
+    if (respostaDetalhes.coeficientes){
+        nomeEDO.parentElement.innerHTML += ` COM ${respostaDetalhes.coeficientes}`
     }
 
 
-    quizResultadoSolucoes.forEach((solucao)=>{
-        solucao.querySelector('h1').innerHTML = `Parabéns! Você recebeu: <span class="text-primary">${resultado.nome}</span>`
 
-        let nomeEdo = solucao.getAttribute("data-edo")
-        console.log(nomeEdo, resultado.nome, nomeEdo === resultado.nome)
-        if (nomeEdo === resultado.nome){
-            solucao.style.display = "flex"
-        }
-    })
+    renderMathInElement(quizResultado)
     perguntaContainer.style.display = 'none'
     quizReplayButton.style.display = 'block'
 
@@ -202,7 +225,6 @@ function proximaPergunta(){
             })
             respostaDetalhes.ordem = 2
             respostaDetalhes.linear = true
-            respostaDetalhes.coeficientes = true
         }
     }
 
@@ -257,7 +279,12 @@ function proximaPergunta(){
                         resposta.contador += 1
                     }
                 })
-                respostaDetalhes.coeficientes = true
+
+                respostas[0].tipos = respostas[0].tipos.filter((tipo)=>{
+                        return tipo.nome === 'COEFICIENTES CONSTANTES'
+                })
+
+                respostaDetalhes.coeficientes = 'COEFICIENTES CONSTANTES'
             }
 
             if (respostaAtual === 'B'){
@@ -266,7 +293,12 @@ function proximaPergunta(){
                         resposta.contador += 1
                     }
                 })
-                respostaDetalhes.coeficientes = false
+
+                respostas[0].tipos = respostas[0].tipos.filter((tipo)=>{
+                        return tipo.nome === 'COEFICIENTES VARIÁVEIS'
+                })
+
+                respostaDetalhes.coeficientes = 'COEFICIENTES VARIÁVEIS'
             }
         }
     }
@@ -279,6 +311,10 @@ function proximaPergunta(){
                         resposta.contador += 1
                     }
                 })
+
+                respostas[2].tipos = respostas[2].tipos.filter((tipo)=>{
+                        return tipo.nome === 'SEPARÁVEL'
+                })
                 respostaDetalhes.tipo = 'SEPARÁVEL'
             }
 
@@ -287,6 +323,10 @@ function proximaPergunta(){
                     if (resposta.ordem === 1 && resposta.linear === false){
                         resposta.contador += 1
                     }
+                })
+
+                respostas[2].tipos = respostas[2].tipos.filter((tipo)=>{
+                        return tipo.nome === 'HOMOGÊNEA'
                 })
                 respostaDetalhes.tipo = 'HOMOGÊNEA'
             }
@@ -297,6 +337,10 @@ function proximaPergunta(){
                         resposta.contador += 1
                     }
                 })
+
+                respostas[2].tipos = respostas[2].tipos.filter((tipo)=>{
+                        return tipo.nome === 'EXATA'
+                })
                 respostaDetalhes.tipo = 'EXATA'
             }
 
@@ -305,6 +349,10 @@ function proximaPergunta(){
                   if (resposta.ordem === 1 && resposta.linear === false){
                         resposta.contador += 1
                     }
+                })
+
+                respostas[2].tipos = respostas[2].tipos.filter((tipo)=>{
+                        return tipo.nome === 'NÃO EXATA'
                 })
                 respostaDetalhes.tipo = 'NÃO EXATA'
             }
@@ -319,7 +367,12 @@ function proximaPergunta(){
                         resposta.contador += 1
                     }
                 })
-                respostaDetalhes.raizes = 'DELTA > 0'
+
+                respostas[3].tipos = respostas[3].tipos.filter((tipo)=>{
+                        return tipo.nome === '\\Delta > 0'
+                })
+
+                respostaDetalhes.raizes = '\\Delta > 0'
             }
 
             if (respostaAtual === 'B'){
@@ -328,7 +381,12 @@ function proximaPergunta(){
                         resposta.contador += 1
                     }
                 })
-                respostaDetalhes.raizes = 'DELTA = 0'
+
+                respostas[3].tipos = respostas[3].tipos.filter((tipo)=>{
+                        return tipo.nome === '\\Delta = 0'
+                })
+
+                respostaDetalhes.raizes = '\\Delta = 0'
             }
 
             if (respostaAtual === 'C'){
@@ -337,7 +395,12 @@ function proximaPergunta(){
                         resposta.contador += 1
                     }
                 })
-                respostaDetalhes.raizes = 'DELTA < 0'
+
+                respostas[3].tipos = respostas[3].tipos.filter((tipo)=>{
+                        return tipo.nome === '\\Delta < 0'
+                })
+
+                respostaDetalhes.raizes = '\\Delta < 0'
             }
 
         }
