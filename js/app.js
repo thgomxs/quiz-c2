@@ -150,7 +150,44 @@ let respostas = [
         ordem: 2,
         homogenea: false,
         coeficientes: null,
-        tipos: [{nome: ' ', texto: 'Você é uma pessoa um tanto complexa, que no final das contas é uma junção de seus dois lados opostos. Um lado que adora se manter constante e fiel a seus ideais e bases, e outro que também adora uma mudança de ares e de situações. A solução para todos os seus problemas é:', solucao: '$$y(x) = y_h(x) + y_p(x)$$'}]
+        tipos: [{nome: ' ', texto: 'Você é uma pessoa um tanto complexa, que no final das contas é uma junção de seus dois lados opostos. Um lado que adora se manter constante e fiel a seus ideais e bases, e outro que também adora uma mudança de ares e de situações. A solução para todos os seus problemas é:', solucao: `    
+    <p>A equação diferencial linear não homogênea de segunda ordem com coeficientes constantes é dada por:</p>
+    <p>$$ay'' + by' + cy = g(x)$$</p>
+    <p>A solução geral é a soma da solução da equação homogênea associada e uma solução particular da equação não homogênea.</p>
+    <p>1. A equação homogênea associada:</p>
+    <p>$$ay'' + by' + cy = 0$$</p>
+    <p>Com solução geral dependendo das raízes da equação característica:</p>
+    <p>$$ar^2 + br + c = 0$$</p>
+    <p>2. Se as raízes \\( r_1 \\) e \\( r_2 \\) são reais e distintas:</p>
+    <p>$$y_h = C_1 e^{r_1 x} + C_2 e^{r_2 x}$$</p>
+    <p>Se as raízes \\( r_1 = r_2 = r \\) são reais e iguais:</p>
+    <p>$$y_h = (C_1 + C_2 x) e^{r x}$$</p>
+    <p>Se as raízes \\( r_1 \\) e \\( r_2 \\) são complexas conjugadas, \\( r = \\alpha \\pm \\beta i \\):</p>
+    <p>$$y_h = e^{\\alpha x} (C_1 \\cos(\\beta x) + C_2 \\sin(\\beta x))$$</p>
+    <p>3. Uma solução particular \\( y_p \\) da equação não homogênea:</p>
+    <p>$$ay'' + by' + cy = g(x)$$</p>
+    <p>4. A solução geral é a soma das soluções:</p>
+    <p>$$y = y_h + y_p$$</p>
+    
+    <p>Solução Particular de EDO Não Homogênea de Segunda Ordem</p>
+    <p>Considerando a equação diferencial:</p>
+    <p>$$ay'' + by' + cy = g(x)$$</p>
+    <p>O método de variação dos parâmetros nos dá a solução particular:</p>
+    <p>$$y_p = u_1(x) y_1(x) + u_2(x) y_2(x)$$</p>
+    <p>onde \\( y_1(x) \\) e \\( y_2(x) \\) são soluções linearly independentes da equação homogênea associada:</p>
+    <p>$$ay'' + by' + cy = 0$$</p>
+    <p>As funções \\( u_1(x) \\) e \\( u_2(x) \\) são encontradas resolvendo o sistema:</p>
+    <p>$$u_1' y_1 + u_2' y_2 = 0$$</p>
+    <p>$$u_1' y_1' + u_2' y_2' = \\frac{g(x)}{a}$$</p>
+    <p>onde o Wronskiano \\( W \\) é dado por:</p>
+    <p>$$W = y_1 y_2' - y_2 y_1'$$</p>
+    <p>As derivadas \\( u_1' \\) e \\( u_2' \\) são:</p>
+    <p>$$u_1' = -\\frac{y_2 g(x)}{a W}$$</p>
+    <p>$$u_2' = \\frac{y_1 g(x)}{a W}$$</p>
+    <p>Finalmente, integrando \\( u_1' \\) e \\( u_2' \\), obtemos \\( u_1(x) \\) e \\( u_2(x) \\), e assim a solução particular:</p>
+    <p>$$y_p = u_1(x) y_1(x) + u_2(x) y_2(x)$$</p>
+
+`}]
     }
 ]
 
