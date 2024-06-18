@@ -295,7 +295,7 @@ body{
 
 .escolha:hover{
   cursor: pointer;
-  transition: .5s;
+  transition:  .5s;
   background-color: #e8e8e8;
 }
 
