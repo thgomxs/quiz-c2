@@ -24,34 +24,35 @@
 </head>
 
 <body>
+  <div id="bg-image"></div>
 
   <main class="container my-0 py-5 d-flex justify-content-center align-items-center ">
-    <div class="container col-8 py-5"  id="container-principal">
+    <div class="container col-8 py-5 bg-white rounded shadow "  id="container-principal">
       <div class="container d-flex flex-column w-100 h-100 justify-content-center align-items-center " >
-        <h1 id="quiz-nome" class="text-uppercase text-center fw-bold text-white mb-3  fs-3" style="white-space: nowrap ">DESCUBRA A SUA EDO</h1>
+        <h1 id="quiz-nome" class="text-uppercase text-center fw-bold text-black mb-3  fs-3" style="white-space: nowrap ">DESCUBRA A SUA EDO</h1>
 
         <div id="quiz-resultado" style="display: none"  class="flex-column justify-content-center align-items-center quiz-resultado-solucao text-uppercase fw-bold" >
-          <p class="text-white fw-bold text-center">Parabéns! Você recebeu: <span class="text-primary" id="edo-nome"></span></p>
-          <div class="text-white text-center my-3"><span id="edo-texto" class="text-uppercase fw-bold"></span><span id="edo-solucao" style="width: fit-content" class="d-block text-lowercase border border-white rounded shadow py-2 px-3 my-3 mx-auto"></span></div>
+          <p class="text-black fw-bold text-center">Parabéns! Você recebeu: <span class="text-success" id="edo-nome"></span></p>
+          <div class="text-black text-center my-3" style="position: relative"><span id="edo-texto" class="text-uppercase fw-bold"></span><span id="edo-solucao" style="width: fit-content" class="d-block text-lowercase border border-black rounded shadow py-2 px-3 my-3 mx-auto"></span></div>
         </div>
 
-        <a id="quiz-replay-btn" style="display: none;margin-top: 1rem" href="/quiz-c2" class="btn btn-primary fw-bold text-uppercase" >DESCOBRIR OUTRA EDO</a>
+        <a id="quiz-replay-btn" style="display: none;margin-top: 1rem" href="/quiz-c2" class="btn btn-success fw-bold text-uppercase" >DESCOBRIR OUTRA EDO</a>
 
         <div id="pergunta-container" style="display: none"  class="flex-column justify-content-center  ">
-          <h1 id="pergunta-titulo" class="text-white small text-uppercase fw-bold text-center mb-4 fs-5 "></h1>
+          <h1 id="pergunta-titulo" class="text-black small text-uppercase fw-bold text-center mb-4 fs-5 "></h1>
 
           <div class="escolhas small text-uppercase">
-            <p id="escolha-a" data-option="A" class="escolha border border-white rounded shadow text-white p-2  fw-bold "> </p>
-            <p id="escolha-b" data-option="B" class="escolha border border-white rounded shadow text-white p-2  fw-bold "></p>
-            <p id="escolha-c" data-option="C" style="display: none" class="escolha border border-white rounded shadow text-white p-2  fw-bold "></p>
-            <p id="escolha-d" data-option="D" style="display: none" class="escolha border border-white rounded shadow text-white p-2  fw-bold "></p>
+            <p id="escolha-a" data-option="A" class="escolha border border-black rounded shadow text-black p-2  fw-bold "> </p>
+            <p id="escolha-b" data-option="B" class="escolha border border-black rounded shadow text-black p-2  fw-bold "></p>
+            <p id="escolha-c" data-option="C" style="display: none" class="escolha border border-black rounded shadow text-black p-2  fw-bold "></p>
+            <p id="escolha-d" data-option="D" style="display: none" class="escolha border border-black rounded shadow text-black p-2  fw-bold "></p>
           </div>
 
-          <button id="proxima-btn" class="btn btn-primary mx-auto text-uppercase fw-bold" style="display: none">PRÓXIMA</button>
+          <button id="proxima-btn" class="btn btn-success mx-auto text-uppercase fw-bold text-white" style="display: none">PRÓXIMA</button>
         </div>
 
-        <button id="iniciar-btn" class="btn btn-primary mx-auto px-3 text-white fw-bold mb-3">INICIAR</button>
-        <button id="desenvolvedores-btn" class="d-none btn btn-info mx-auto text-white fw-bold">DESENVOLVEDORES</button>
+        <button id="iniciar-btn" class="btn btn-success mx-auto px-3 text-black fw-bold mb-3 text-white">INICIAR</button>
+        <button id="desenvolvedores-btn" class="d-none btn btn-info mx-auto text-black fw-bold">DESENVOLVEDORES</button>
       </div>
     </div>
   </main>

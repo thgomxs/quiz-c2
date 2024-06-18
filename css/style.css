@@ -11,6 +11,34 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
+#bg-image{
+  height: 100vh;
+  width: 100vw;
+  filter: blur(2px);
+  z-index: -1;
+  position: absolute;
+  background-image: url("../images/b.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.text-success{
+  color: #347c2c !important;
+}
+
+button{
+  background-color: #347c2c !important;
+  transition: .5s;
+}
+
+button:hover{
+  background-color: #2e6b26 !important;
+}
+
+
+
+
 html {
   color: #222;
   font-size: 1em;
@@ -250,6 +278,7 @@ textarea {
     font-family: "Poppins", sans-serif;
 }
 body{
+  overflow-x: hidden;
   background-color: rgb(29, 29, 29) !important;
 }
 
@@ -259,18 +288,23 @@ body{
     color: #30799B;
 }
 
+#quiz-resultado{
+  max-height: 500px;
+  overflow-y: auto;
+}
+
 .escolha:hover{
   cursor: pointer;
   transition: .5s;
-  background-color: #373737;
+  background-color: #e8e8e8;
 }
 
 .selected{
   transition: .5s;
-  background-color: #17D600;
+  background-color: #347c2c !important;
 }
 .selected:hover{
-  background-color: #20c410;
+  background-color: #2e6b26 !important;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -279,3 +313,9 @@ body{
     }
 }
 
+@media only screen and (max-width: 750px) {
+  #quiz-resultado{
+    max-height: 400px;
+    overflow-y: auto;
+  }
+}
