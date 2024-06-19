@@ -27,7 +27,7 @@
   color: #347c2c !important;
 }
 
-button{
+button, a{
   background-color: #347c2c !important;
   transition: .5s;
 }
